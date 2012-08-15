@@ -77,7 +77,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/alberto/trabajo/personales/yampico/static',
+    os.path.join(APP_ROOT, 'static').replace('\\', '/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -110,7 +110,6 @@ ROOT_URLCONF = 'yampico.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(APP_ROOT, 'templates').replace('\\', '/'),
-    #'/home/alberto/trabajo/personales/yampico/templates',)
 )
 
 INSTALLED_APPS = (
