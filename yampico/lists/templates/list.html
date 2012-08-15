@@ -1,0 +1,34 @@
+{% extends 'skel.html' %}
+
+{% block content %}
+<header class="jumbotron subhead" id="overview">
+    <h1>{{ current_list.name }}</h1>
+    <p>{{ current_list.description }}</p>
+    <ul>
+        <li><a href="edit/">Edit list</a></li>
+        <li><a href="delete/">Delete list</a></li>
+    </ul>
+</header>
+    
+    <form action="update-items/" method="post">
+    	{% with current_list.listitem_set.all as items %}
+        {% if  items %}
+        <ul class="unstyled">
+            {% for item in items %}
+                {% if item.marked %}<li class="marked"><input type="checkbox" name="list_items" value="{{ item.id }}"checked="checked" />{% else %}<li><input type="checkbox" name="list_items" value="{{ item.id }}"  />{% endif %}{{ item.description }} <a href="delete-item/{{ item.id }}" class="btn-mini">Delete</a></li>
+            {% endfor %}
+        </ul>
+        <p><input type="submit" value="Update" class="btn" /> <input type="submit" name="purge" value="Delete marked" class="btn" /></p>
+        {% else %}
+            <p>No hay elementos</p>
+        {% endif %}
+        {% endwith %}
+    </form>
+    <form action="add-item/" method="post" class="form-horizontal">
+        <fieldset>
+        <div class="input-append">
+            <input type="text" name="description" /><input type="submit" value="Add item" class="btn" />
+        </div>
+        </fieldset>
+    </form>
+{% endblock %}

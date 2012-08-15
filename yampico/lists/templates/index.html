@@ -1,0 +1,19 @@
+{% extends 'skel.html' %}
+
+{% block content %}
+<header class="jumbotron subhead" id="overview">
+    <h1>My lists</h1>
+    <ul>
+        <li><a href="add/">Add list</a></li>
+    </ul>
+</header>
+<p>{{ error }}</p>
+<ul class="unstyled main-list">
+{%  for current_list in lists %}
+	<li><h2><a href="{{ current_list.id }}/">{{ current_list.name }}</a></h2>
+		{% if current_list.description %}{{ current_list.description }}<br />{% endif %}
+		<a href="{{ current_list.id }}/edit/">Edit list</a> <a href="{{ current_list.id }}/delete/">Delete list</a>
+	</li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'skel.html' %}
+
+{% block content %}
+
+{% if action == 'add' %}
+<h1>Add list</h1>
+{% else %}
+<h1>Edit list</h1>
+{% endif %}
+{% if form.errors %}
+	<p style="color: red;">Please correct the errors below.</p>
+{% endif %}
+
+<form action="" method="post" class="well2">
+	<ul>
+		{{ form.as_ul }}
+	</ul>
+	<div class="form-actions">
+		<button type="submit" class="btn btn-primary" name="save" value="Save">
+		{% if action == 'add' %}Add{% else %}Save changes{% endif %}</button>
+		<a href="" class="btn" onclick="history.go(-1);">Cancel</a>
+	</div>
+</form>
+{% endblock %}
