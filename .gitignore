@@ -3,3 +3,6 @@ yampico.sqlite3
 .project
 .pydevproject
 *.pyc
+*.log
+*.pot
+*.pyc
