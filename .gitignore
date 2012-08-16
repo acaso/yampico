@@ -1,0 +1,5 @@
+.idea
+yampico.sqlite3
+.project
+.pydevproject
+*.pyc
