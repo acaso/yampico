@@ -16,7 +16,38 @@
 }
 
 body {
-	padding-top: 80px;
+	background-color: #dddddd;
+	margin: 50px 1%;
+	color: #666666;
+}
+
+h1 {
+	font-weight: 100;
+}
+
+div#main_container {
+	background: #f6f6f6;
+	/*border: 1px solid #cccccc;*/
+	border-radius: 3px;
+	padding-top: 2em;
+	box-shadow: 0 0 5px #cccccc;
+}
+
+div.dashboard_element {
+	margin: 0.8em;
+	/*border: 1px solid red;*/
+	border-radius: 3px;
+	padding: 0.7em;
+	box-shadow: 0 0 2px #cccccc;
+	background-color: white;
+	color: #cccccc;
+
+}
+
+div.dashboard_element h2 {
+	border-bottom: 1px solid #dddddd;
+	font-weight: 100;
+	
 }
 
 </style>
@@ -39,11 +70,11 @@ body {
 </div>
 
 
-<div class="container">
+<div id="main_container" class="container">
 
     <div class="row">
-        <div class="span2">Test</div>
-        <div class="span10">
+        <div class="span3">Test</div>
+        <div class="span9">
             {% block content %}{% endblock %}
         </div>
     </div>

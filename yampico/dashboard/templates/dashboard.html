@@ -1,13 +1,10 @@
 {% extends 'skel.html' %}
 
 {% block content %}
-<header class="jumbotron subhead" id="overview">
-    <h1>Dashboard</h1>
-</header>
-
 <div class="row">
-	<div class="span8">Test</div>
-	<div class="span2">
+	<div class="span6"><div class="dashboard_element">Test</div></div>
+	<div class="span3">
+	<div class="dashboard_element">
 		<h2>Lists</h2>
 		<ul>
 			{%  for current_list in lists %}
@@ -15,6 +12,7 @@
 			{% endfor %}
 		</ul>
 		<a href="../lists/">More lists&hellip;</a>
+	</div>
 	</div>
 </div>
 {% endblock %}
