@@ -121,7 +121,7 @@ def update_items(request, listid):
 
         if request.POST.get('purge', None):
             # If button was Purge button, proceed to purge this list's marked items
-            ListItem.objects.filter(list=my_list, marked=True).delete()
+            my_list.listitem_set.filter(marked=True).delete()
 
 
     return HttpResponseRedirect('../')
