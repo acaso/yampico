@@ -133,8 +133,7 @@ def add_item(request, listid):
     item_description = request.POST.get('description', None)
 
     if item_description:
-        new_item = ListItem(description = item_description, list = my_list)
-        new_item.save()
+        my_list.listitem_set.create(description = item_description)
 
     return HttpResponseRedirect('../')
 
