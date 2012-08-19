@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 #from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
@@ -15,12 +15,10 @@ def index(request):
 
 def detail(request, listid):
     """
-    Show a list items and details
+    Show a list's items and details
     """
-    current_list = List.objects.get(id=listid)
-            
-    if not current_list:
-        return HttpResponseRedirect('/lists/')
+
+    current_list = get_object_or_404(List, id=listid)
     
     return render_to_response('list.html', {'current_list': current_list})
     
@@ -49,14 +47,10 @@ def edit(request, listid):
     Modifies an item list
     """
     
-    my_list = List.objects.get(id=listid)
-            
-    if not my_list:
-        return HttpResponseRedirect('/lists/')
+    my_list = get_object_or_404(List, id=listid)
 
     if request.method == 'POST' and request.POST.get('save', ''):
         form = ItemListForm(request.POST)
-        
         
         if form.is_valid():
             cd = form.cleaned_data
@@ -79,22 +73,19 @@ def delete(request, listid):
     Delete list
     """
     
-    target_list = List.objects.get(id=listid)
-
-    if not target_list:
-        return HttpResponseRedirect('../../')
+    my_list = get_object_or_404(List, id=listid)
 
     if request.method == 'POST' and request.POST.get('delete', None):
-        target_list.delete()
+        my_list.delete()
         return HttpResponseRedirect('../../')
     else:
-        return render_to_response('delete_list_confirm.html', {'list': target_list})
+        return render_to_response('delete_list_confirm.html', {'list': my_list})
 
 
 def update_items(request, listid):
 
     if request.method == 'POST':
-
+        
         selected_items = []
         for value in request.POST.getlist('list_items'):
             try:
@@ -103,7 +94,7 @@ def update_items(request, listid):
                 # Ignore wrong values
                 pass
 
-        my_list = List.objects.get(id=listid)
+        my_list = get_object_or_404(List, id=listid)
 
         for list_item in my_list.listitem_set.all():
             if list_item.marked:
@@ -128,7 +119,7 @@ def update_items(request, listid):
 
 def add_item(request, listid):
 
-    my_list = List.objects.get(id=listid)
+    my_list = get_object_or_404(List, id=listid)
 
     item_description = request.POST.get('description', None)
 
@@ -139,10 +130,7 @@ def add_item(request, listid):
 
 def delete_item(request, itemid):
 
-    item = ListItem.objects.get(id=itemid)
-
-    if not item:
-        return HttpResponseRedirect('../../')
+    item = get_object_or_404(ListItem, id=itemid)
 
     if request.method == 'POST' and request.POST.get('delete', None):
         item.delete()
