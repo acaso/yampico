@@ -3,6 +3,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 #from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 from lists.models import List, ListItem
 
@@ -35,7 +36,7 @@ def add(request):
             new_list = List(name=cd['name'], description=cd['description'])
             new_list.save()
             
-            return HttpResponseRedirect('/lists/')
+            return HttpResponseRedirect(reverse('lists.views.index'))
         
     else:
         form = ItemListForm()
@@ -59,7 +60,7 @@ def edit(request, listid):
             my_list.description = cd['description']
             my_list.save()
             
-            return HttpResponseRedirect('/lists/')
+            return HttpResponseRedirect(reverse('lists.views.index'))
     else:
         form_data = {
             'name': my_list.name,
@@ -77,7 +78,7 @@ def delete(request, listid):
 
     if request.method == 'POST' and request.POST.get('delete', None):
         my_list.delete()
-        return HttpResponseRedirect('../../')
+        return HttpResponseRedirect(reverse('lists.views.index'))
     else:
         return render_to_response('delete_list_confirm.html', {'list': my_list})
 
@@ -115,7 +116,7 @@ def update_items(request, listid):
             my_list.listitem_set.filter(marked=True).delete()
 
 
-    return HttpResponseRedirect('../')
+    return HttpResponseRedirect(reverse('lists.views.detail', args=(listid,)))
 
 def add_item(request, listid):
 
@@ -126,7 +127,7 @@ def add_item(request, listid):
     if item_description:
         my_list.listitem_set.create(description = item_description)
 
-    return HttpResponseRedirect('../')
+    return HttpResponseRedirect(reverse('lists.views.detail', args=(listid,)))
 
 def delete_item(request, itemid):
 
@@ -135,7 +136,7 @@ def delete_item(request, itemid):
     if request.method == 'POST' and request.POST.get('delete', None):
         item.delete()
         #item.save()
-        return HttpResponseRedirect('../../')
+        return HttpResponseRedirect(reverse('lists.views.detail', args=(item.list.id,)))
     else:
         return render_to_response('delete_item_confirm.html', {'item': item})
 
