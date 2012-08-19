@@ -3,7 +3,7 @@ from django.conf.urls.defaults import patterns, url
 urlpatterns = patterns('lists.views',
     url(r'^$', 'index'),
     url(r'^(?P<listid>\d+)/$', 'detail'),
-    url(r'^add/$', 'lists.views.add'),
+    url(r'^add/$', 'add'),
     url(r'^(?P<listid>\d+)/edit/', 'edit'),
     url(r'^(?P<listid>\d+)/delete/', 'delete'),
 
