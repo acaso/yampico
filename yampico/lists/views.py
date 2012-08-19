@@ -36,7 +36,9 @@ def add(request):
             new_list = List(name=cd['name'], description=cd['description'])
             new_list.save()
             
-            return HttpResponseRedirect(reverse('lists.views.index'))
+            list_id = new_list.id
+            
+            return HttpResponseRedirect(reverse('lists.views.detail', args=(list_id,)))
         
     else:
         form = ItemListForm()
