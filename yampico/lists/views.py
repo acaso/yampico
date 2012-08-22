@@ -92,7 +92,7 @@ def update_items(request, listid):
         selected_items = []
         for value in request.POST.getlist('list_items'):
             try:
-                selected_items.append(int(value))
+                selected_items.append(value)
             except ValueError:
                 # Ignore wrong values
                 pass
