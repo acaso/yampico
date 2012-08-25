@@ -12,7 +12,7 @@ from lists.forms import ItemListForm
 def index(request):
     lists_list = List.objects.order_by("id")
 
-    return render_to_response('index.html', {'lists': lists_list})
+    return render_to_response('yampico.lists/index.html', {'lists': lists_list})
 
 def detail(request, listid):
     """
@@ -21,7 +21,7 @@ def detail(request, listid):
 
     current_list = get_object_or_404(List, id=listid)
     
-    return render_to_response('list.html', {'current_list': current_list})
+    return render_to_response('yampico.lists/list.html', {'current_list': current_list})
     
 
 def add(request):
@@ -43,7 +43,7 @@ def add(request):
     else:
         form = ItemListForm()
     
-    return render_to_response('list_form.html', {'form': form, 'action': 'add'})
+    return render_to_response('yampico.lists/list_form.html', {'form': form, 'action': 'add'})
 
 def edit(request, listid):
     """
@@ -69,7 +69,7 @@ def edit(request, listid):
             'description': my_list.description,}
         form = ItemListForm(form_data)
         
-    return render_to_response('list_form.html', {'form': form, 'action': 'edit'})
+    return render_to_response('yampico.lists/list_form.html', {'form': form, 'action': 'edit'})
 
 def delete(request, listid):
     """
@@ -82,7 +82,7 @@ def delete(request, listid):
         my_list.delete()
         return HttpResponseRedirect(reverse('lists.views.index'))
     else:
-        return render_to_response('delete_list_confirm.html', {'list': my_list})
+        return render_to_response('yampico.lists/delete_list_confirm.html', {'list': my_list})
 
 
 def update_items(request, listid):
@@ -140,5 +140,5 @@ def delete_item(request, itemid):
         #item.save()
         return HttpResponseRedirect(reverse('lists.views.detail', args=(item.list.id,)))
     else:
-        return render_to_response('delete_item_confirm.html', {'item': item})
+        return render_to_response('yampico.lists/delete_item_confirm.html', {'item': item})
 
