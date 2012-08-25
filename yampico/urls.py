@@ -18,7 +18,11 @@ urlpatterns = patterns('',
     
     url(r'^$', 'yampico.views.index'),
     url(r'^lists/', include('yampico.lists.urls')),
+
     url(r'^dashboard/', include('yampico.dashboard.urls')),
+    
+    url(r'^accounting/', include('yampico.accounting.urls')),
+    
 )
 
 urlpatterns += staticfiles_urlpatterns()
