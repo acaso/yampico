@@ -5,4 +5,36 @@
     <h1>Accounting</h1>
 </header>
 <p>{{ error }}</p>
+
+<div class="row-flow">
+	<div class="span9">
+		<h2>Operations</h2>
+		<table class="table table-striped table-hover">
+		{% for operation in latest_operations %}
+			<tr>
+				<td>{{ operation.description }}<br />
+					{% for op_account in operation.account_set.all %}
+						{{ op_account.name }},
+					{% endfor %}
+				</td>
+				<td>{{ operation.balance }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	</div><!-- span9 -->
+	<div class="span3">
+		<h2>Accounts</h2>
+		<ul class="unstyled accounting-accounts-summary">
+			{%  for account in accounts %}
+			<li><h3><a href="{{ account.id }}/">{{ account.name }}</a></h3>
+				<p class="accouting-accounts-summary-balance
+					{% if account.balance >= 0 %}positive-balance{% else %}negative-balance{% endif %}
+					">{{ account.balance }}</p>
+			</li>
+			{% endfor %}
+			<li><h3>Total</h3>
+				<p class="accouting-accounts-summary-balance positive-balance grand-balance">{{ grand_balance }}</p>
+		</ul>
+	</div><!-- span3 -->
+</div><!-- row -->
 {% endblock %}
