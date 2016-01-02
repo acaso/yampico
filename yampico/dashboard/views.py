@@ -24,9 +24,7 @@
 
 """
 
-from django.shortcuts import render_to_response
-#from django.http import HttpResponse
-from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 from lists.models import List, ListItem
 
@@ -42,4 +40,4 @@ def index(request):
     
     dashboard_data['lists'] = lists
     
-    return render_to_response('yampico.dashboard/dashboard.html', dashboard_data)
+    return render(request, 'yampico.dashboard/dashboard.html', dashboard_data)
