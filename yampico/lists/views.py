@@ -24,14 +24,13 @@
 
 """
 
-from django.shortcuts import render_to_response, get_object_or_404
-#from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from lists.models import List, ListItem
+from .models import List, ListItem
 
-from lists.forms import ItemListForm
+from .forms import ItemListForm
 
 def index(request):
     """Default action.
@@ -41,14 +40,14 @@ def index(request):
     
     lists_list = List.objects.order_by("id")
 
-    return render_to_response('yampico.lists/index.html', {'lists': lists_list})
+    return render(request, 'lists/index.html', {'lists': lists_list})
 
 def detail(request, listid):
     """Show a list's items and details."""
 
     current_list = get_object_or_404(List, id=listid)
     
-    return render_to_response('yampico.lists/list.html', {'current_list': current_list})
+    return render(request, 'lists/list.html', {'current_list': current_list})
     
 
 def add(request):
@@ -72,7 +71,7 @@ def add(request):
         # Request does not come from the 'save' button. Just show the form.
         form = ItemListForm()
     
-    return render_to_response('yampico.lists/list_form.html', {'form': form, 'action': 'add'})
+    return render(request, 'lists/list_form.html', {'form': form, 'action': 'add'})
 
 def edit(request, listid):
     """Modify a list.
@@ -102,7 +101,7 @@ def edit(request, listid):
             'description': my_list.description,}
         form = ItemListForm(form_data)
         
-    return render_to_response('yampico.lists/list_form.html', {'form': form, 'action': 'edit'})
+    return render(request, 'lists/list_form.html', {'form': form, 'action': 'edit'})
 
 def delete(request, listid):
     """Delete list."""
@@ -118,7 +117,7 @@ def delete(request, listid):
     
     else:
         # Ask for confirmation.
-        return render_to_response('yampico.lists/delete_list_confirm.html', {'list': my_list})
+        return render(request, 'lists/delete_list_confirm.html', {'list': my_list})
 
 
 def update_items(request, listid):
@@ -192,5 +191,4 @@ def delete_item(request, itemid):
     
     else:
         # Ask the user for confirmation
-        return render_to_response('yampico.lists/delete_item_confirm.html', {'item': item})
-
+        return render(request, 'lists/delete_item_confirm.html', {'item': item})

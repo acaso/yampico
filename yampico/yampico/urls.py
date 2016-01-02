@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Yampico is a web assistant for home management
@@ -20,43 +19,48 @@
 
 """URLs for Yampico root application
 
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/1.9/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
+Including another URLconf
+    1. Add an import:  from blog import urls as blog_urls
+    2. Import the include() function: from django.conf.urls import url, include
+    3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
+
 @author: Alberto Caso <alberto.caso@adaptia.es>
 
 """
 
-from django.conf.urls.defaults import patterns, include, url
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
-# Enable the admin:
+from django.conf.urls import include, url
 from django.contrib import admin
-admin.autodiscover()
 
-urlpatterns = patterns('',
+from . import views
+
+
+urlpatterns = [
     # Examples:
     # url(r'^$', 'yampico.views.home', name='home'),
     # url(r'^yampico/', include('yampico.foo.urls')),
-
-    # Enable admin documentation:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 
     # Site's root
-    url(r'^$', 'yampico.views.index'),
+    url(r'^$', views.index, name='index'),
 
     # URLs from the Lists application.
-    url(r'^lists/', include('yampico.lists.urls')),
+    url(r'^lists/', include('lists.urls')),
 
     # URLs from the Dashboard application.
-    url(r'^dashboard/', include('yampico.dashboard.urls')),
+    url(r'^dashboard/', include('dashboard.urls')),
     
     # URLs from the Accounting application.
-    url(r'^accounting/', include('yampico.accounting.urls')),
+    url(r'^accounting/', include('accounting.urls')),
     
-)
-
-# Include support for static files
-# TODO: In production, serve them from the web server and not from Django
-urlpatterns += staticfiles_urlpatterns()
-
+]

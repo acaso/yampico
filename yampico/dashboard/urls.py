@@ -1,9 +1,8 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Yampico is a web assistant for home management
 #
-# Copyright (C) 2012  Alberto Caso Palomino
+# Copyright (C) 2012-2016  Alberto Caso Palomino
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -24,8 +23,10 @@
 
 """
 
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import url
 
-urlpatterns = patterns('',
-    url(r'^$', 'dashboard.views.index'),
-)
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.index),
+]

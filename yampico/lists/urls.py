@@ -1,9 +1,8 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Yampico is a web assistant for home management
 #
-# Copyright (C) 2012  Alberto Caso Palomino
+# Copyright (C) 2012-2016  Alberto Caso Palomino
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -24,19 +23,25 @@
 
 """
 
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import url
 
-urlpatterns = patterns('lists.views',
+from . import views
+
+urlpatterns = [
     
     #URLs for managing lists themselves
-    url(r'^$', 'index'),
-    url(r'^add/$', 'add'),
-    url(r'^(?P<listid>[0-9a-f\-]+)/$', 'detail'),
-    url(r'^(?P<listid>[0-9a-f\-]+)/edit/', 'edit'),
-    url(r'^(?P<listid>[0-9a-f\-]+)/delete/', 'delete'),
+    url(r'^$', views.index, name='index'),
+    url(r'^add/$', views.add, name='add'),
+    url(r'^(?P<listid>[0-9a-f\-]+)/$', views.detail, name='detail'),
+    url(r'^(?P<listid>[0-9a-f\-]+)/edit/', views.edit, name='edit'),
+    url(r'^(?P<listid>[0-9a-f\-]+)/delete/', views.delete, name='delete'),
 
     # URLs for managing the items of a list
-    url(r'^(?P<listid>[0-9a-f\-]+)/update-items/$', 'update_items'),
-    url(r'^(?P<listid>[0-9a-f\-]+)/add-item/$', 'add_item'),
-    url(r'^[0-9a-f\-]+/delete-item/(?P<itemid>[0-9a-f\-]+)/$', 'delete_item'),
-)
+    url(r'^(?P<listid>[0-9a-f\-]+)/update-items/$',
+        views.update_items,
+        name='update_items'),
+    url(r'^(?P<listid>[0-9a-f\-]+)/add-item/$', views.add_item, name='add_item'),
+    url(r'^[0-9a-f\-]+/delete-item/(?P<itemid>[0-9a-f\-]+)/$',
+        views.delete_item,
+        name='delete_item'),
+]

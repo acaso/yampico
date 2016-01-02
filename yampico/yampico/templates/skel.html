@@ -1,8 +1,10 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.css" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
 <style>
 
 h2 {
@@ -95,9 +97,9 @@ div.dashboard_element h2 {
                 Yampico
             </a>
             <ul class="nav">
-                <li><a href="{% url dashboard.views.index %}">Dashboard</a></li>
-                <li class="active"><a href="{% url lists.views.index %}">Lists</a></li>
-                <li><a href="{% url accounting.views.index %}">Accounting</a></li>
+                <li><a href="{% url 'dashboard.views.index' %}">Dashboard</a></li>
+                <li class="active"><a href="{% url 'lists.views.index' %}">Lists</a></li>
+                <li><a href="{% url 'accounting.views.index' %}">Accounting</a></li>
             </ul>
         </div>
     </div>
