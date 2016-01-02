@@ -41,7 +41,7 @@ def index(request):
     # TODO: get only n latest operations and not all
     latest_operations = Operation.objects.all()
 
-    return render(request, 'yampico.accounting/index.html',
+    return render(request, 'accounting/index.html',
         {'accounts': accounts_list,
          'grand_balance': grand_balance,
          'latest_operations': latest_operations})

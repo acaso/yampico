@@ -40,4 +40,4 @@ def index(request):
     
     dashboard_data['lists'] = lists
     
-    return render(request, 'yampico.dashboard/dashboard.html', dashboard_data)
+    return render(request, 'dashboard/dashboard.html', dashboard_data)
