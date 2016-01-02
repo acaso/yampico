@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Yampico is a web assistant for home management
@@ -26,7 +25,7 @@
 
 from django.shortcuts import render
 
-from accounting.models import Account, Operation
+from .models import Account, Operation
 
 def index(request):
     """Default action.

@@ -1,9 +1,8 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Yampico is a web assistant for home management
 #
-# Copyright (C) 2012  Alberto Caso Palomino
+# Copyright (C) 2012-2016  Alberto Caso Palomino
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -28,9 +27,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from .models import List, ListItem
-
 from .forms import ItemListForm
+from .models import List, ListItem
 
 def index(request):
     """Default action.

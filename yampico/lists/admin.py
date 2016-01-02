@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Yampico is a web assistant for home management
@@ -23,7 +22,7 @@
 """
 
 from django.contrib import admin
-from lists.models import List, ListItem
+from .models import List, ListItem
 
 admin.site.register(List)
 admin.site.register(ListItem)

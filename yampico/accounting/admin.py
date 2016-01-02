@@ -1,9 +1,8 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Yampico is a web assistant for home management
 #
-# Copyright (C) 2012  Alberto Caso Palomino
+# Copyright (C) 2012-2016  Alberto Caso Palomino
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -23,7 +22,8 @@
 """
 
 from django.contrib import admin
-from accounting.models import Account, Operation
+
+from .models import Account, Operation
 
 admin.site.register(Account)
 admin.site.register(Operation)
