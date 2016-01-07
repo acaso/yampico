@@ -72,7 +72,7 @@ class ListItem(models.Model):
     description = models.CharField(max_length=500)
     """Item contents."""
     
-    marked = models.BooleanField()
+    marked = models.BooleanField(default=False)
     """Flag to set an item as marked (checked)."""
     
     list = models.ForeignKey(List)
