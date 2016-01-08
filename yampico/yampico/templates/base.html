@@ -1,141 +1,100 @@
-{% load staticfiles %}
-
 <!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap3 %}
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
-<style>
-
-h2 {
-	font-size: 150%;
-}
-
-h3 {
-	font-size: 125%;
-}
-
-.marked {
-    text-decoration: line-through;
-}
-
-.main-list h2 {
-	margin-top: 0.6em;
-	margin-bottom: 0px;
-	padding-bottom: 0px;
-	line-height: 1em;
-}
-
-body {
-	background-color: #dddddd;
-	margin: 50px 1%;
-	color: #666666;
-}
-
-h1 {
-	font-weight: 100;
-}
-
-div#main_container {
-	/*background: #f6f6f6;*/
-	background: white;
-	/*border: 1px solid #cccccc;*/
-	border-radius: 3px;
-	padding-top: 2em;
-	box-shadow: 0 0 5px #cccccc;
-}
-
-div.dashboard_element {
-	margin: 0.8em;
-	/*border: 1px solid red;*/
-	border-radius: 3px;
-	padding: 0.7em;
-	box-shadow: 0 0 2px #cccccc;
-	background-color: white;
-	color: #cccccc;
-
-}
-
-div.dashboard_element h2 {
-	border-bottom: 1px solid #dddddd;
-	font-weight: 100;
-	
-}
-
-.accounting-accounts-summary h3 {
-	font-size: 1.1em;
-	margin-bottom: 0;
-	line-height: 1.1em;
-}
-
-.accouting-accounts-summary-balance {
-	font-size: 1.1em;
-	font-weight: bold;
-	text-align: right;
-}
-
-.positive-balance {
-	color: green;
-}
-
-.negative-balance {
-	color: red;
-}
-
-.grand-balance {
-	font-size: 2em;
-}
-
-</style>
+    {% bootstrap_css %}
+    <link href="{% static 'css/yampico.css' %}" rel="stylesheet">
 </head>
 <body>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" href="/">
-                Yampico
-            </a>
-            <ul class="nav">
-                <li><a href="{% url 'dashboard.views.index' %}">Dashboard</a></li>
-                <li class="active"><a href="{% url 'lists.views.index' %}">Lists</a></li>
-                <li><a href="{% url 'accounting.views.index' %}">Accounting</a></li>
-            </ul>
-        </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Yampico</a>
     </div>
-</div>
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'dashboard.views.index' %}">Dashboard <span class="sr-only">(current)</span></a></li>
+        <li><a href="{% url 'lists.views.index' %}">Lists</a></li>
+        <li><a href="{% url 'accounting.views.index' %}">Accounting</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <div id="main_container" class="container-fluid">
-
-    <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             {% block content %}{% endblock %}
         </div>
+
     </div>
 </div>
-
+{% bootstrap_javascript %}
 </body>
 </html>

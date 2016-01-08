@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'accounting',
     'dashboard',
     'lists',
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [
