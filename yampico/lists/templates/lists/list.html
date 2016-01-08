@@ -23,6 +23,7 @@
             <p>No hay elementos</p>
         {% endif %}
         {% endwith %}
+        {% csrf_token %}
     </form>
     <form action="add-item/" method="post" class="form-horizontal">
         <fieldset>
@@ -30,5 +31,6 @@
             <input type="text" name="description" /><input type="submit" value="Add item" class="btn" />
         </div>
         </fieldset>
+        {% csrf_token %}
     </form>
 {% endblock %}
