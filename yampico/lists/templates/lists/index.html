@@ -10,9 +10,9 @@
 <p>{{ error }}</p>
 <ul class="unstyled main-list">
 {%  for current_list in lists %}
-	<li><h2><a href="{{ current_list.id }}/">{{ current_list.name }}</a></h2>
+	<li><h2><a href="{% url 'detail' current_list.id %}">{{ current_list.name }}</a></h2>
 		{% if current_list.description %}{{ current_list.description }}<br />{% endif %}
-		<a href="{{ current_list.id }}/edit/">Edit list</a> <a href="{{ current_list.id }}/delete/">Delete list</a>
+		<a href="{% url 'edit' current_list.id %}">Edit list</a> <a href="{% url 'delete' current_list.id %}">Delete list</a>
 	</li>
 {% endfor %}
 </ul>
